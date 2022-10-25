@@ -36,8 +36,13 @@ function onLoadCartNumbers() {
 
 function cartNumbers(product) {
 
-    let productNumbers = localStorage.getItem('cartNumbers', productNumbers + 1);
-    productNumbers = parseInt(productNumbers);
+    let productNumbers = localStorage.getItem("cartNumbers");
+	productNumbers = parseInt(productNumbers);
+	console.log(productNumbers);
+    console.log(product);
+
+    /*let productNumbers = localStorage.getItem('cartNumbers', productNumbers + 1);
+    productNumbers = parseInt(productNumbers);*/
     
     if (productNumbers){
         localStorage.setItem('cartNumbers',productNumbers + 1);
