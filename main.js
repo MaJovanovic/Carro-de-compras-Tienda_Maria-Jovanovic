@@ -20,9 +20,15 @@ let product = [
     }
 ]
 
-for ( i=0; i< cart.length; i++) {
+console.log("carro " , cart);
+console.log("tamaño carro ",cart.length);
+console.log("prueba producto ",product[0]);
+
+for (let i=0; i< cart.length; i++) {
     cart[i].addEventListener('click', () => {
+        console.log(product[i].nombre ,"aa");
         cartNumbers(product[i]);
+        
     })
 }
 
@@ -34,48 +40,53 @@ function onLoadCartNumbers() {
     }
 }
 
+
+
 function cartNumbers(product) {
 
     let productNumbers = localStorage.getItem("cartNumbers");
-	productNumbers = parseInt(productNumbers);
-	console.log(productNumbers);
-    console.log(product);
+    productNumbers = parseInt(productNumbers);
+    console.log(productNumbers);
+    console.log("es el rpoducto", product);
+    console.log(JSON.stringify(product));
 
-    /*let productNumbers = localStorage.getItem('cartNumbers', productNumbers + 1);
-    productNumbers = parseInt(productNumbers);*/
-    
-    if (productNumbers){
-        localStorage.setItem('cartNumbers',productNumbers + 1);
-        document.querySelector('.cart span').textContent = productNumbers +1;
+    if (productNumbers) {
+        localStorage.setItem('cartNumbers', productNumbers + 1);
+        document.querySelector('.cart span').textContent = productNumbers + 1;
     } else {
         localStorage.setItem('cartNumbers', 1);
         document.querySelector('.cart span').textContent = 1;
     }
+    localStorage.setItem("productsInCart", JSON.stringify(product));
+
 
     setItems(product);
 
 }
 
-function setItems(product) {
-    let cartItems = localStorage.getItem('productsInCart');
-    cartItems = JSON.parse(cartItems);
 
-    if (cartItems != null){
-        if(cartItems [product.tag] == undefined) {
+function setItems(product) {
+
+    let cartItems = JSON.parse(localStorage.getItem('productsInCart'));
+
+    if (cartItems != null) {
+        if (cartItems[product.tag] == undefined) {
             cartItems = {
                 ...cartItems,
-                [product.tag]: product
+                [product.tag]: product,
             }
-    } else {
+            cartItems[product.tag].inCart +=1;
+        } else {
             product.inCart = 1;
             cartItems = {
+                //...cartItems,
                 [product.tag]: product
             }
         }
+        localStorage.setItem("productsInCart", JSON.stringify(cartItems));
     }
 
+    console.log("items en el carro ", cartItems);
 
-    localStorage.setItem("productsInCart", JSON.stringify(cartItems));
 }
-
 onLoadCartNumbers();
