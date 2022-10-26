@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>carro</title>
 </head>
+
 <body>
-    <h1>Inicio</h1>
+    <header>
+        <div class="cart">
+                <h1>carro</h1>
+                <span>0</span>
+        </div>
+
+        <div class="totalContainer">
+            <p>Total a pagar:</p><span> 0 </span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="prod">
+            <h3>Teclado mecanico</h3>
+            <img class="pic" src="/media/teclado.jpeg" alt="" />
+            <h3>$1000</h3>
+            <a class="add-cart cart1" href="#">añadir al carro</a>
+        </div>
+
+        <div class="prod">
+            <h3>Mouse inalambrico</h3>
+            <img class="pic" src="/media/mouse.webp" alt="" />
+            <h3>$600</h3>
+            <a class="add-cart cart1" href="#">añadir al carro</a>
+        </div>
+
+        <div class="prod">
+            <h3>pantalla 4k</h3>
+            <img class="pic" src="/media/pantalla.jpg" alt="" />
+            <h3>$2500</h3>
+            <a class="add-cart cart3" href="#">añadir al carro</a>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
 </body>
+
 </html>

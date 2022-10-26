@@ -1,32 +1,29 @@
 let cart = document.querySelectorAll(".add-cart");
 let product = [{
-        nombre: "teclado",
-        tag: "tec",
+        nombre: "teclado mecanico",
+        tag: "teclado",
         precio: 1000,
         inCart: 0,
     },
     {
-        nombre: "mouse",
-        tag: "mou",
+        nombre: "mouse inalambrico",
+        tag: "mouse",
         precio: 600,
         inCart: 0,
     },
     {
-        nombre: "pantalla",
-        tag: "pant",
+        nombre: "pantalla 4K",
+        tag: "pantalla",
         precio: 2500,
         inCart: 0,
     },
 ];
 
-console.log("carro ", cart);
-console.log("tamaño carro ", cart.length);
-console.log("prueba producto ", product[0]);
 
 for (let i = 0; i < cart.length; i++) {
     cart[i].addEventListener("click", () => {
-        console.log(product[i].nombre, "aa");
         cartNumbers(product[i]);
+        totalCost(product[i]);
     });
 }
 
@@ -41,9 +38,6 @@ function onLoadCartNumbers() {
 function cartNumbers(product) {
     let productNumbers = localStorage.getItem("cartNumbers");
     productNumbers = parseInt(productNumbers);
-    console.log(productNumbers);
-    console.log("es el rpoducto", product);
-    console.log(JSON.stringify(product));
 
     if (productNumbers) {
         localStorage.setItem("cartNumbers", productNumbers + 1);
@@ -52,7 +46,6 @@ function cartNumbers(product) {
         localStorage.setItem("cartNumbers", 1);
         document.querySelector(".cart span").textContent = 1;
     }
-    //localStorage.setItem("productsInCart", JSON.stringify(product));
 
     setItems(product);
 }
@@ -75,6 +68,20 @@ function setItems(product) {
         };
     }
     localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+}
+
+function totalCost(product) {
+    let cartCost = localStorage.getItem('totalCost');
+
+    if(cartCost != null) {
+        cartCost = parseInt(cartCost);
+        localStorage.setItem("totalCost", cartCost + product.precio);
+        document.querySelector(".totalContainer span").textContent = cartCost + product.precio;
+    } else {
+        localStorage.setItem("totalCost", product.precio)
+        document.querySelector(".totalContainer span").textContent = product.precio;
+    }
+    
 }
 
 onLoadCartNumbers();
